@@ -20,6 +20,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <dubbo.version>3.2.0</dubbo.version>
         <spring-boot.version>2.7.13</spring-boot.version>
+        <jackson-version>1.9.13</jackson-version>
+        <!--  resteasy 发布 rest 的访问 -->
+        <resteasy-version>3.15.6.Final</resteasy-version>
+        <tomcat.version>9.0.75</tomcat.version>
     </properties>
 
     <dependencies>
@@ -58,6 +62,84 @@
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>3.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-rpc-rest</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-core-asl</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-jaxrs</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-xc</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson-provider</artifactId>
+            <version>${resteasy-version}</version>
+            <exclusions>
+            <exclusion>
+                <artifactId>jackson-core-asl</artifactId>
+                <groupId>org.codehaus.jackson</groupId>
+            </exclusion>
+            <exclusion>
+            <artifactId>jackson-jaxrs</artifactId>
+                <groupId>org.codehaus.jackson</groupId>
+            </exclusion>
+                <exclusion>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-xc</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <artifactId>jackson-core-asl</artifactId>
+            <groupId>org.codehaus.jackson</groupId>
+            <version>${jackson-version}</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>jackson-jaxrs</artifactId>
+            <groupId>org.codehaus.jackson</groupId>
+            <version>${jackson-version}</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <groupId>org.codehaus.jackson</groupId>
+            <version>${jackson-version}</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>jackson-xc</artifactId>
+            <groupId>org.codehaus.jackson</groupId>
+            <version>${jackson-version}</version>
         </dependency>
 
     </dependencies>
