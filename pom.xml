@@ -18,12 +18,17 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dubbo.version>3.2.0</dubbo.version>
+        <!--<dubbo.version>3.2.0</dubbo.version>-->
+        <!--  3.2.x版本 不再支持 grpc， 使用triple取代grpc -->
+        <dubbo.version>3.1.10</dubbo.version>
         <spring-boot.version>2.7.13</spring-boot.version>
-        <jackson-version>1.9.13</jackson-version>
-        <!--  resteasy 发布 rest 的访问 -->
+        <!--<jackson-version>1.9.13</jackson-version>
+        &lt;!&ndash;  resteasy 发布 rest 的访问 &ndash;&gt;
         <resteasy-version>3.15.6.Final</resteasy-version>
-        <tomcat.version>9.0.75</tomcat.version>
+        <tomcat.version>9.0.75</tomcat.version>-->
+        <grpc.version>1.54.1</grpc.version>
+        <os.detected.classifier>windows-x86_64</os.detected.classifier>
+        <spring.version>5.3.25</spring.version>
     </properties>
 
     <dependencies>
@@ -70,7 +75,44 @@
             <version>1.18.22</version>
         </dependency>
 
+        <!-- 改变了dubbo的版本，Spring的版本也变了，导致缺类，手动导入版本 -->
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jcl</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!--<dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-rpc-rest</artifactId>
             <version>${dubbo.version}</version>
@@ -140,7 +182,7 @@
             <artifactId>jackson-xc</artifactId>
             <groupId>org.codehaus.jackson</groupId>
             <version>${jackson-version}</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
@@ -161,7 +203,17 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-bom</artifactId>
+                <version>${grpc.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
+
+
     </dependencyManagement>
 
 </project>

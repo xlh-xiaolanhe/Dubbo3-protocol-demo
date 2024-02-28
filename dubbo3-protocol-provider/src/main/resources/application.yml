@@ -11,13 +11,19 @@ spring:
 
 
 #REST协议相关配置
+#dubbo:
+#  protocol:
+#    name: rest
+#    port: 9001 # rest服务访问端口
+#    server: tomcat
+#    contextpath: xiaolanhe #应用名
+#  registry:
+#    address: zookeeper://127.0.0.1:2181
+#server:
+#  port: 8001 #springboot的 web 启动端口，为了避免和rest的端口起冲突
 dubbo:
   protocol:
-    name: rest
-    port: 9001 # rest服务访问端口
-    server: tomcat
-    contextpath: xiaolanhe #应用名
+    name: grpc
+    port: -1
   registry:
     address: zookeeper://127.0.0.1:2181
-server:
-  port: 8001 #springboot的 web 启动端口，为了避免和rest的端口起冲突

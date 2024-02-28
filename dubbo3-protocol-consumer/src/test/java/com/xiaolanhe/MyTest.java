@@ -1,8 +1,6 @@
 package com.xiaolanhe;
 
 import com.xiaolanhe.entity.Order;
-import com.xiaolanhe.service.OrderService;
-import com.xiaolanhe.service.UserService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,8 +18,11 @@ public class MyTest {
     /*@DubboReference
     private UserService userService;*/
 
-    @DubboReference(protocol = "rest")
-    private OrderService orderService;
+   // @DubboReference(protocol = "rest")
+    //private OrderService orderService;
+
+    @DubboReference(protocol = "grpc")
+    private DubboDemoServiceGrpc.IDemoService dubboDemoServiceStub;
 
     @Test
     public void test01()
@@ -32,7 +33,14 @@ public class MyTest {
 
     @Test
     public void testRestProtocol(){
-        Order order = orderService.getOrder(100L);
-        System.out.println("order = " + order);
+        //Order order = orderService.getOrder(100L);
+        //System.out.println("order = " + order);
+    }
+
+    @Test
+    public void testGrpc(){
+        System.out.println("dubboDemoServiceStub = " + dubboDemoServiceStub);
+        ResponseData responseData = dubboDemoServiceStub.demo(RequestData.newBuilder().setName("xiaolanhe").build());
+        System.out.println("responseData = " + responseData.getResult());
     }
 }
